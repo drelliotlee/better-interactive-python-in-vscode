@@ -1,4 +1,9 @@
 import time
+x=1
+y=2
+z=3
+a=4
+b=5
 tic = tic = time.perf_counter()
 print('hello world!')
 print('hello world!')
