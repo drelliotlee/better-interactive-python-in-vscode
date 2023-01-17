@@ -3,20 +3,23 @@ A frequent part of the data science workflow is executing a portion of SomePytho
 
 However, all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
 
-### Method 1
+#### Method 1
 highlight code and "Run Selection/Line in Interactive Terminal"
+
 ![method 1](imgs/method1.jpg)
 
 Method 1's flaw: Decent code execution speed, *but* up/down arrow don't scroll through your code history.  Also, no syntax coloring.
 
-### Method 2
+#### Method 2
 highlight code and "Run Selection/Line in Python Terminal"
+
 ![method 2](imgs/method2.jpg)
 
 Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless in practice). 
 
-### Method 3
+#### Method 3
 highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
+
 ![method 3](imgs/method3.jpg)
 
 Method 3's flaw: no command history at all. [details in footnote 1]
