@@ -3,23 +3,17 @@ A frequent part of the data science workflow is executing a portion of SomePytho
 
 However, all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
 
-**Method 1** : highlight code and "Run Selection/Line in Interactive Terminal"
+**Method 1** :  "Run Selection/Line in Python Terminal". **Major flaw**: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks. Also, no syntax coloring.
 
 ![method 1](imgs/method1.jpg)
 
-Method 1's flaw: Decent code execution speed, *but* up/down arrow don't scroll through your code history.  Also, no syntax coloring.
-
-**Method 2** : highlight code and "Run Selection/Line in Python Terminal"
+**Method 2** : "Run Selection/Line in Python Terminal" with this [popular setting/trick](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code)  **Major flaw**: Also line-by-line code history AND significantly slower than Method 1.
 
 ![method 2](imgs/method2.jpg)
 
-Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless in practice). 
-
-**Method 3** : highlight code and "Run Selection/Line in Python Terminal" with this [popular setting/trick](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) 
+**Method 3** : "Run Selection/Line in Interactive Terminal". **Major flaw**: no code history function at all [details in footnote 1] , and the SLOWEST of all 3 methods 
 
 ![method 3](imgs/method3.jpg)
-
-Method 3's flaw: no command history at all. [details in footnote 1]
 
 # The Solution / My Method
 For my script to work, you need 3 things:
@@ -37,7 +31,7 @@ Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Py
 | **Method 3**  |       ❌         |       0.4 sec           |
 | **THIS METHOD** |      ✔️        |         .000045 sec         |
 
-(benchmark results in footnote 4)
+(benchmark results in appendix)
 
 ## Appendix: Footnotes
 
@@ -47,14 +41,17 @@ Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Py
 
 [3] You can do this easily by adding this to your keybindings.json: `{"key": "ctrl+`", "command": "workbench.action.terminal.focus"}` 
 
-[4] ![method1bench](imgs/method1bench.png)
+## Appendix: Pre-requisite Steps to re-create the problem
+
+1. install Anaconda3-2022.10-Windows-x86_64.exe 
+2. install VSCodeUserSetup-x64-1.74.3.exe 
+3. install Python extension v2022.20.2 
+
+*(all are the most recent versions available as of 2022-01-16)*
+
+## Appendix: Benchmark screenshots
+
+![method1bench](imgs/method1bench.png)
 ![method2bench](imgs/method2bench.png)
 ![method3bench](imgs/method3bench.png)
 ![method4bench](imgs/method4bench.png)
-
-## Appendix: Pre-requisite Steps to Re-create the Problem
-
-1. install Anaconda3-2022.10-Windows-x86_64.exe *
-2. install VSCodeUserSetup-x64-1.74.3.exe *
-3. install Python extension v2022.20.2 *
-*most recent version available as of 2022-01-16*
