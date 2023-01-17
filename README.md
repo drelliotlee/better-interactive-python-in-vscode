@@ -1,47 +1,35 @@
 # The Problem
-An extremely frequent part of the data science workflow is wanting to execute a portion of SomePythonScript.py, and work with the results interactively.
+A frequent part of the data science workflow is executing a portion of SomePythonScript.py, and working with the results interactively. Currently in vscode, you have 3 options to do this:
 
-In this very common anaconda+vscode setup, you have 3 options:
-
-(1) highlight code and "Run Selection/Line in Interactive Terminal"
+* (1) highlight code and "Run Selection/Line in Interactive Terminal"
+![method 1](imgs/method1.jpg)
+* (2) highlight code and "Run Selection/Line in Python Terminal"
+img
+* (3) highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
 img
 
-(2) highlight code and "Run Selection/Line in Python Terminal"
-img
+However, all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
 
-(3) highlight code and "Run Selection/Line in Python Terminal" with the ipython kernel setting
-img
-
-all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
-
-Method 1's flaw: Fast code execution, *but* up/down arrow don't scroll through your code history. [see note 1]
-
-Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless). Also, no syntax coloring.
-
-Method 3's flaw: has command history and syntax coloring *BUT extremely slow!* See performance comparisons below.
-
-Quite frankly, I have no idea how anybody is doing python data science in vscode given these flaws. 
+* Method 1's flaw: Fast code execution, *but* up/down arrow don't scroll through your code history. [see note 1]
+* Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless in practice). Also, no syntax coloring.
+* Method 3's flaw: has command history and syntax coloring *BUT extremely slow!* See performance comparisons below. 
 
 # The Solution / My Method
 For my script to work, I assume 3 things:
 1. You have autohotkey v1.1 installed and *betterSendToPythonTerminal.ahk* is in your windows startup folder
 2. Your keyboard shortcut for `Terminal: Focus Terminal` is `ctrl+tick/tilde`.
-
 add this to your keybindings.json: `{"key": "ctrl+`", "command": "workbench.action.terminal.focus"}` 
 3. You have already ipython terminal open in vscode. [see note 2]
 
-# Advantages:
+# Advantages
 Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Pycharm/Rstudio!
 |               | Code History? | speedBenchmark.py |
 |---------------|---------------|-------------------|
 | **method 1**  |       ❌       |       ✔️            |
-| **method 2**  |        ❌ (line-by-line, useless)     |     ❌              |
+| **method 2**  |        ❌     |     ❌              |
 | **method 3**  |       ✔️        |       ❌            |
-| **my method** |      ✔️        |        ✔️           |
+| **THIS METHOD** |      ✔️        |        ✔️           |
 
-* up/down arrow scroll through your code history in entire chunks!
-* your python terminal is interactive and has full syntax coloring
-* executes code >100x faster than method (3) which was the only other way to get the 2 above features
 
 ## Appendix: Pre-requisite Steps to Re-create the Problem
 
