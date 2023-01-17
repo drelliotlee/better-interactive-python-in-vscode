@@ -1,28 +1,27 @@
 # The Problem
-A frequent part of the data science workflow is executing a portion of SomePythonScript.py, and working with the results interactively. Currently in vscode, you have 3 options to do this:
-
-* Method 1: highlight code and "Run Selection/Line in Interactive Terminal"
-![method 1](imgs/method1.jpg)
-* Method 2: highlight code and "Run Selection/Line in Python Terminal"
-![method 2](imgs/method2.jpg)
-* Method 3: highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
-![method 3](imgs/method3.jpg)
+A frequent part of the data science workflow is executing a portion of SomePythonScript.py, and working with the results interactively. Currently in vscode, you have 3 options to do this.
 
 However, all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
 
-* Method 1's flaw: Fast code execution, *but* up/down arrow don't scroll through your code history. [see note 1]
-* Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless in practice). Also, no syntax coloring.
-* Method 3's flaw: has command history and syntax coloring *BUT extremely slow!* See performance comparisons below. 
+* Method 1: highlight code and "Run Selection/Line in Interactive Terminal"
+![method 1](imgs/method1.jpg)
+Method 1's flaw: Decent code execution speed, *but* up/down arrow don't scroll through your code history.  Also, no syntax coloring.
+* Method 2: highlight code and "Run Selection/Line in Python Terminal"
+![method 2](imgs/method2.jpg)
+Method 2's flaw: up/down arrow scroll through your code history line-by-line, instead of the entire code chunks (basiscally useless in practice). 
+* Method 3: highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
+![method 3](imgs/method3.jpg)
+Method 3's flaw: no command history at all. [details in footnote 1]
 
 # The Solution / My Method
-For my script to work, I assume 3 things:
-1. You have autohotkey v1.1 installed and *betterSendToPythonTerminal.ahk* is in your windows startup folder
-2. Your keyboard shortcut for `Terminal: Focus Terminal` is `ctrl+tick/tilde`.
-add this to your keybindings.json: `{"key": "ctrl+`", "command": "workbench.action.terminal.focus"}` 
-3. You have already ipython terminal open in vscode. [see note 2]
+For my script to work, you need 3 things:
+1. Install autohotkey v1.1, and put *betterSendToPythonTerminal.ahk* in your windows startup folder
+2. Change your vscode keyboard shortcut for `Terminal: Focus Terminal` to `ctrl+tick/tilde`. [see footnote 3]
+3. Open ipython terminal open in vscode. [details in footnote 2]
+
+Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Pycharm/Rstudio!
 
 # Advantages
-Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Pycharm/Rstudio!
 |               | Code History? | speedBenchmark.py |
 |---------------|---------------|-------------------|
 | **Method 1**  |       ❌  (line-by-line, no syntax coloring)     |       0.0126 sec            |
@@ -30,7 +29,7 @@ Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Py
 | **Method 3**  |       ❌         |       0.4 sec           |
 | **THIS METHOD** |      ✔️        |         .000045 sec         |
 
-see footnote 3 for benchmark results
+(benchmark results in footnote 4)
 
 ## Appendix: Pre-requisite Steps to Re-create the Problem
 
@@ -45,7 +44,9 @@ see footnote 3 for benchmark results
 
 [2] I added *~\anaconda3\Scripts\* to my windows PATH environment variable so that all I have to do is 1. start vscode, 2. open a command terminal 3. type `ipython` and hit enter to change the windows terminal into a ipython terminal
 
-[3] ![method1bench](imgs/method1bench.png)
+[3] You can do this easily by adding this to your keybindings.json: `{"key": "ctrl+`", "command": "workbench.action.terminal.focus"}` 
+
+[4] ![method1bench](imgs/method1bench.png)
 ![method2bench](imgs/method2bench.png)
 ![method3bench](imgs/method3bench.png)
 ![method4bench](imgs/method4bench.png)
