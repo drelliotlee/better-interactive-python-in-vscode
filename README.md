@@ -1,12 +1,12 @@
 # The Problem
 A frequent part of the data science workflow is executing a portion of SomePythonScript.py, and working with the results interactively. Currently in vscode, you have 3 options to do this:
 
-* (1) highlight code and "Run Selection/Line in Interactive Terminal"
+* Method 1: highlight code and "Run Selection/Line in Interactive Terminal"
 ![method 1](imgs/method1.jpg)
-* (2) highlight code and "Run Selection/Line in Python Terminal"
-img
-* (3) highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
-img
+* Method 2: highlight code and "Run Selection/Line in Python Terminal"
+![method 2](imgs/method2.jpg)
+* Method 3: highlight code and "Run Selection/Line in Python Terminal" with this [popular setting](https://stackoverflow.com/questions/52310689/use-ipython-repl-in-vs-code) to call iPython instead of "vanilla" python.
+![method 3](imgs/method3.jpg)
 
 However, all 3 options have critical flaws and do not behave how data scientists have become accustomed to in popular IDEs (ex. spyder, Rstudio, iPython/QTconsole, Pycharm)
 
@@ -25,11 +25,12 @@ add this to your keybindings.json: `{"key": "ctrl+`", "command": "workbench.acti
 Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Pycharm/Rstudio!
 |               | Code History? | speedBenchmark.py |
 |---------------|---------------|-------------------|
-| **method 1**  |       ❌       |       ✔️            |
-| **method 2**  |        ❌     |     ❌              |
-| **method 3**  |       ✔️        |       ❌            |
-| **THIS METHOD** |      ✔️        |        ✔️           |
+| **Method 1**  |       ❌  (line-by-line, no syntax coloring)     |       0.0126 sec            |
+| **Method 2**  |        ❌ (line-by-line)     |     0.0415 sec              |
+| **Method 3**  |       ❌         |       0.4 sec           |
+| **THIS METHOD** |      ✔️        |         .000045 sec         |
 
+see footnote 3 for benchmark results
 
 ## Appendix: Pre-requisite Steps to Re-create the Problem
 
@@ -43,3 +44,8 @@ Now `shift+enter` behaves exactly as all data scientists expect, à la Spyder/Py
 [1] Actually command history exists via `interactive.history.next` and `interactive.history.previous` (but the default hotkeys up/down are being overridden by other hotkeys with higher precedence!). Even if you happen to discover these, and re-bind them to new, non-conflicting hotkeys, they still don't behave correctly. Vscode is such a mess!
 
 [2] I added *~\anaconda3\Scripts\* to my windows PATH environment variable so that all I have to do is 1. start vscode, 2. open a command terminal 3. type `ipython` and hit enter to change the windows terminal into a ipython terminal
+
+[3] ![method1bench](imgs/method1bench.png)
+![method2bench](imgs/method2bench.png)
+![method3bench](imgs/method3bench.png)
+![method4bench](imgs/method4bench.png)
